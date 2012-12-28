@@ -1,0 +1,26 @@
+---
+comments: true
+date: 2009-08-25 19:38:35
+layout: post
+slug: wheres-tostring
+title: Where's toString?
+wordpress_id: 74
+tags:
+- batteries included
+- int
+- inverse
+- python
+---
+
+Why don't python integers have a smart toString method like java/javascript? It's easy to convert strings into numbers using int(str_whatever) or float(str_whatever) but to convert them back you have only the decimal system (using str(number) or "%d" % number). In case you want to convert to binary, base32, base36, base64, you're gonna have to write your own conversion function. Batteries included?
+
+Use either:
+<a style="text-decoration:none;" title="radix base change python" href="http://pastebin.com/f54dd69d6"> http://pastebin.com/f54dd69d6</a>
+
+<a title="radix base change python" href="http://code.activestate.com/recipes/65212/"> http://code.activestate.com/recipes/65212/</a>
+
+<a href="http://code.activestate.com/recipes/111286/">http://code.activestate.com/recipes/111286/</a>
+
+I added a feature request, lets see if it gets completely shot down:
+
+<a href="http://bugs.python.org/issue6783">http://bugs.python.org/issue6783</a>

@@ -1,0 +1,24 @@
+---
+comments: true
+date: 2009-11-21 09:55:19
+layout: post
+slug: python-graphbin-a-place-to-share-graphs
+title: Python Graphbin - A place to share graphs
+wordpress_id: 113
+categories:
+- internet
+- programming
+tags:
+- python
+---
+
+A week ago I found out some strange stuff was going on when I searched for "aaaaaaaaaaa". So I made a python script
+<a href="http://pastebin.com/f35806f8f">http://pastebin.com/f35806f8f</a> for gathering the search results and wanted to plot a nice graph. The problem was I couldn't find a nice place to show and store the data. So I made a pastebin esque graphbin at <a href="http://graphbin.appspot.com">http://graphbin.appspot.com</a> and you can see the google search results:
+
+<a href="http://graphbin.appspot.com/g/bedequP4">http://graphbin.appspot.com/g/bedequP4</a>
+
+I used "Paste-It" (<a href="http://paste-it.appspot.com/">http://paste-it.appspot.com/</a>) as the base for graphbin so I got a bit familiar with the "Paste"
+(<a href="http://pythonpaste.org">http://pythonpaste.org</a>) framework. Sadly, this wasn't a pleasant journey. A lot of the connected things are just scattered all over the place and yet seem heavily entangled (ie main.py uses
+page/pasties/add.py which outputs the relevant template page in line 125 out of 342 after a flow that was no fun to follow). I'm not sure if this is a problem with "Paste" or a problem with the "Paste-It" implementation, but it got a bit ugly. Not to mention some bad naming (the "paste" folder holds the "web" framework folder and all the models, why not name the folder "models" and move the framework out? Why are pages "pasties"?).
+
+Maybe some paste-lover can dazzle me with some info on how paste compares/differs to/from django. Drop a comment.

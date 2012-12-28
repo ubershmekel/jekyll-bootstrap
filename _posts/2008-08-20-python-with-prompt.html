@@ -1,0 +1,35 @@
+---
+comments: true
+date: 2008-08-20 18:50:35
+layout: post
+slug: python-with-prompt
+title: Python with prompt
+wordpress_id: 3
+categories:
+- registry
+tags:
+- convenience
+- debug
+- python
+- windows
+---
+
+Ever run a python script in windows and it just doesn't work and doesn't tell you why?
+
+This is for when exceptions are thrown but Windows closes your python interpreter, I came up with a shell extension called "open with prompt" where the interpreter sticks around so you can toy around with your python script after it's done.
+
+Just run this: <a title="registry file" href="http://www.fileqube.com/hl/KQqucDVqF85231/python with prompt.reg">[reg file]</a> (for python ver 2.5 installed in default location)<a title="registry file" href="http://www.fileqube.com/hl/KQqucDVqF85231/python with prompt.reg">
+</a>
+
+The reg file contains (it's really simple, just add -i to the regular running):
+<blockquote>Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\Python.File\shell\Open with prompt]
+
+[HKEY_CLASSES_ROOT\Python.File\shell\Open with prompt\command]
+@="\"C:\\Python25\\python.exe\" -i \"%1\" %*"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Python.File\shell\Open with prompt]
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Python.File\shell\Open with prompt\command]
+@="\"C:\\Python25\\python.exe\" -i \"%1\" %*"</blockquote>

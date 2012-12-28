@@ -1,0 +1,31 @@
+---
+comments: true
+date: 2012-03-17 20:53:40
+layout: post
+slug: ah-the-old-reddit-switch-a-roo-analyzed
+title: Ah the old Reddit switch-a-roo analyzed
+wordpress_id: 585
+categories:
+- internet
+- programming
+tags:
+- gephi
+- networkx
+- python
+- reddit
+- switcharoo
+---
+
+So after clicking through what seemed an infinite amount of tabs from one of these <a href="http://www.reddit.com/r/WTF/comments/qy31w/well_this_is_completely_disgusting/c41fntu?context=1">switcheroo comments</a> I finally wrote down <a title="A script which crawls reddit for the old switcheroo" href="http://codepad.org/rQJCLyxR">the script which analyzed the graph</a>. I'd suggest you ignore the following png and take a gander at the <a href="http://uberpython.files.wordpress.com/2012/03/znetwork5.pdf">network pdf of the switcharoo graph because you can click through to the links</a>.
+
+<img class="alignnone" title="The old reddit switch-a-roo analyzed image" src="http://i.imgur.com/Z1klR.png" alt="The old reddit switch-a-roo analyzed image" width="655" height="926" />
+
+To recap - 50 nodes, 52 edges, though there are probably more out there that point into some point of that chain. And here are the awards:
+<ul>
+	<li><a href="http://www.reddit.com/r/pics/comments/ia0ij/watching_fellowship_of_the_ring_tonight_and_never/c225zkg">First comment by jun2san who started the shenanigans</a></li>
+	<li><a href="http://www.reddit.com/r/aww/comments/mwxbg/my_sister_and_my_puppy_yes_she_is_a_puppy_d/c34ixoe">Farthest down link which points to a cycle start</a></li>
+	<li><a href="http://www.reddit.com/r/pics/comments/iw0el/my_cousin_has_leukemia_and_went_to_this_golf/c277gni?context=3">Farthest down link if the graph weren't directed</a></li>
+</ul>
+There. I hope that didn't take away from the magic.
+<h2>Appendix - The hardships</h2>
+This was overly hard to do - first of all NSFW links gave me the "are you over 18?" prompt which for some reason I wasn't able to solve by cookies. I eventually turned to the mobile version of the site (append ".compact") to avoid the prompts completely. Also, matplotlib and networkx aren't that fun for drawing graphs it seems. To visualize and output the graph I eventually used <a href="http://gephi.org/">gephi</a> which was somewhat easy although has it's clunkiness baggage.

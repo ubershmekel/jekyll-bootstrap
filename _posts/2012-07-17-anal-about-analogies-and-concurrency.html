@@ -1,0 +1,61 @@
+---
+comments: true
+date: 2012-07-17 09:22:52
+layout: post
+slug: anal-about-analogies-and-concurrency
+title: Anal About Analogies and Concurrency
+wordpress_id: 605
+categories:
+- programming
+tags:
+- analogies
+- concurrency
+- locks
+- room
+- synchronization
+- teaching
+- threading
+- waiting
+---
+
+Analogies are tools, they can add intuition, fun and functional value to thoughts and concepts. Here are a few:
+<ul>
+	<li>Learning quadratic equations is more fun when thinking of balls and rockets flying around.</li>
+	<li>Assembly can be thought of as an analogy for turing machines, C can be considered analogous to assembly.</li>
+	<li><address>Regular languages and finite automatons are equivalent, yet I personally would prefer solving an automaton problem over any regular language one.</address></li>
+</ul>
+<h2>"Lock" is frothy</h2>
+The word "lock" isn't the best at describing what it does for concurrency. From <a title="simple wikipedia: lock" href="http://simple.wikipedia.org/wiki/Lock">simple wikipedia</a>:
+<blockquote>A lock is a fastening device: a thing which keeps people from opening something, such as a door or a box.</blockquote>
+But in concurrency locks don't just prevent access, most of the time they cause whoever touches the lock to just wait there until the lock is "open". Locks in the real world mean "you can't have this" while locks in CS mean "hold on a second, I'm busy here".
+<h2>A better analogy for locks - the waiting room</h2>
+Every book on the planet uses the example of a waiting room to explain locks. Why don't we just call them waiting rooms? Here it goes:
+
+Let's say the resource we're protecting is a doctor which wouldn't be able to help 10 people (threads) at the same time because humans are terrible multitaskers. We invented the waiting room with a secretary (aka the operating system) that gives each person a ticket with some random number on it and when it's your turn, she calls out your number and hands you the key to the room with the doctor in it. Now that you have the key, be careful with it, you can open the door but if you have a heart attack before you return it - no one else will be able to access the doctor and all the poor saps in the waiting room will be stuck there for all eternity.
+<h2>Table of analogies</h2>
+<table>
+<tbody>
+<tr>
+<td><a href="http://en.wikipedia.org/wiki/Lock_(computer_science)">Lock</a></td>
+<td>A waiting room with one locked door</td>
+</tr>
+<tr>
+<td><a href="http://en.wikipedia.org/wiki/Semaphore_(programming)">Semaphore</a></td>
+<td>A waiting room with multiple locked doors</td>
+</tr>
+<tr>
+<td><a href="http://msdn.microsoft.com/en-us/library/system.threading.manualresetevent.aspx">Manual Reset Event</a></td>
+<td>A waiting room with a big sign that tells everybody whether to wait or go</td>
+</tr>
+<tr>
+<td><a href="http://en.wikipedia.org/wiki/Deadlock">Deadlock</a></td>
+<td>Two dumbasses are each waiting for a key held by the other, you might expect the secretary to intervene but she's not that bright either.</td>
+</tr>
+</tbody>
+</table>
+<h2>The fun part - what can we do with these</h2>
+Now that we have better names/analogies, designing a concurrent system becomes an interior architecture problem. Build rooms and hallways to solve your computer problems. Check out this design for a <a href="http://en.wikipedia.org/wiki/Readers%E2%80%93writer_lock">Readers-Writer-Lock</a> and imagine people walking around from room to room through the arrows. Try and figure out where people might get stuck or interfere with one another.
+
+<a title="Readers-writer-lock google drawing" href="https://docs.google.com/drawings/d/1NPPheCwICO-Hr1lQ-zGSOhTPmi8pK3DnGea-NukXkG4/edit">The google docs drawing source</a>
+
+<a href="http://i.imgur.com/bON2R.png"><img class="alignnone" title="I actually know this one as &quot;Single reader multiple writer&quot; but I stick with whatever wikipedia says." src="http://i.imgur.com/bON2R.png" alt="" width="500" height="300" /></a>

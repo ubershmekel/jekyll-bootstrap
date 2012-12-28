@@ -1,0 +1,30 @@
+---
+comments: true
+date: 2011-10-21 10:23:09
+layout: post
+slug: python-23-and-unicode-file-paths
+title: Python 2/3 and unicode file paths
+wordpress_id: 180
+categories:
+- programming
+tags:
+- python
+- unicode
+---
+
+This bug popped up in a script of <a href="http://pypi.python.org/pypi/import_file">mine</a>:
+
+For Python 2:
+<pre>&gt;&gt;&gt; os.path.abspath('.')
+'C:\\Users\\yuv\\Desktop\\YuvDesktop\\??????'
+&gt;&gt;&gt; os.path.abspath(u'.')
+u'C:\\Users\\yuv\\Desktop\\YuvDesktop\\\u05d0\u05d1\u05d2\u05d3\u05d4\u05d5'</pre>
+For Python 3:
+<pre>
+&gt;&gt;&gt; os.path.abspath('.')
+'C:\\Users\\yuv\\Desktop\\YuvDesktop\\\u05d0\u05d1\u05d2\u05d3\u05d4\u05d5'
+&gt;&gt;&gt; os.path.abspath(b'.')
+b'C:\\Users\\yuv\\Desktop\\YuvDesktop\\??????'</pre>
+That odd set of question marks is a completely useless and invalid path in case you were wondering. The windows cmd prompt sometimes has question marks that aren't garbage, but I assure you, these are useless and wrong question marks.
+
+The solution is to always use unicode strings with path functions. A bit of a pain. Am I the only one who thinks this is failing silently? I'll file it in the bug tracker and we'll see.

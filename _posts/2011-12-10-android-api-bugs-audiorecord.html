@@ -1,0 +1,39 @@
+---
+comments: true
+date: 2011-12-10 19:52:33
+layout: post
+slug: android-api-bugs-audiorecord
+title: Android API Bugs - AudioRecord
+wordpress_id: 233
+categories:
+- programming
+tags:
+- android
+- audio
+---
+
+When asking android to record from the mic to a buffer you have to do something like:
+<pre>mRecorder = new AudioRecord(AudioSource.MIC, RATE, CHANNEL_MODE,
+ ENCODING, BUFFER_SIZE);
+if (mRecorder.getState() != AudioRecord.STATE_INITIALIZED) {
+    // fail and bail
+}
+mRecorder.startRecording();
+bytesRead = mRecorder.read(audioBuffer, offsetInBuffer, readSize);
+mRecorder.stop();
+mRecorder.release();</pre>
+Now the bug that drove me mad was that read() returned zero when I left the application (using the home button) and immediately returned to it. Luckily I was toying around with BUFFER_SIZE when I noticed
+<pre>mRecorder.getState()</pre>
+failed when BUFFER_SIZE was set to 0x100, I guessed it was too small and indeed one must call getMinBufferSize() to find out <a title="AudioRecord instantiation documentation" href="http://developer.android.com/reference/android/media/AudioRecord.html#AudioRecord(int, int, int, int, int)">the limits of AudioRecord instantiation as documented</a>.
+
+Don't use getMinBufferSize() + 1 btw as that throws an IllegalArgumentException at AudioRecorder construction:
+<pre>12-10 21:49:33.359: E/AndroidRuntime(28950): java.lang.IllegalArgumentException: Invalid audio buffer size.</pre>
+Using something like <strong>getMinBufferSize() + 100</strong> does work at first but when you use the home-button to leave and return it <strong>causes the read() returning zero bug from time to time</strong>. Not always, but from time to time. Also make sure you release() the recorder because forgetting that will also allow you to construct the recorder but reads will fail.
+
+I can't begin to describe how frustrating finding that bug was.
+
+Now audio programmers should know they're supposed to read a size that's a divisor of the buffer size, yes. This doesn't excuse the API from behaving itself and throwing relevant exceptions and errors that are debuggable and documented. This was SdkLevel 8 btw. Things like this make you feel as though these are the guys that wrote the api:
+<div></div>
+<img class="alignnone" title="Running and firing anywhere" src="http://i.imgur.com/E0iVN.gif" alt="" width="405" height="228" />
+
+Eventually the working code will be pushed to the <a title="Android Tuner" href="http://code.google.com/p/androidtuner/source/browse/">android tuner google code project</a> for your enjoyment.

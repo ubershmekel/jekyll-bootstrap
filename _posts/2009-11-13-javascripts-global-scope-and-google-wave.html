@@ -1,0 +1,32 @@
+---
+comments: true
+date: 2009-11-13 11:30:40
+layout: post
+slug: javascripts-global-scope-and-google-wave
+title: Javascript's Global Scope and Google Wave
+wordpress_id: 106
+tags:
+- google
+- javascript
+- wave
+---
+
+Dmitry Baranovskiy said something that bit me the other day:
+
+
+<blockquote>JavaScript’s global scope is a public toilet. You can’t avoid going in there but try to limit your contact with surfaces when you do.</blockquote>
+
+
+
+Google wave stops calling your gadget callback functions if you do the following in your javascript:
+
+<code>name = "something, anything really, it doesn't matter"</code>
+
+That's it, that's all it takes to break a gadget. This bug was very hard for me to find and fix. I now realize it's noobish not to place 'var' before every local variable and that the most polite thing would be to always use var and fight the scoping with only one uniquely named global. Javascript did a big nono when it decided that by default a variable is global and the special ones are local. Really that's just one insane design choice.
+
+What's in a "name" as one might ask is something like
+"wgadget_iframe_8" for which I didn't really care enough to dig any further. Just know that you can't touch it when making a gadget for google wave.
+
+Btw the gadget I made's called "4 in a wave" which allows you to play the classic game face to face (thumbnail to thumbnail) with your opponent. A bot for playing alone is coming soon. To use this gadget in a wave just click the puzzle piece and paste this url:
+
+<a href="http://4inawave.googlecode.com/files/4inaawave.0.8.xml">http://4inawave.googlecode.com/files/4inaawave.0.8.xml</a>

@@ -1,0 +1,23 @@
+---
+comments: true
+date: 2009-09-05 17:15:23
+layout: post
+slug: i-broke-the-python-interpreter-today
+title: I broke the python interpreter today
+wordpress_id: 77
+tags:
+- breaks
+- dictionary
+- interpreter
+- locals
+- python
+---
+
+locals() can let you add non-strings to your local namespace, check it out...
+
+&gt;&gt;&gt; locals().update({3:2})
+&gt;&gt;&gt; dir()
+Traceback (most recent call last):
+  File "", line 1, in 
+TypeError: unorderable types: int() &lt; str()
+

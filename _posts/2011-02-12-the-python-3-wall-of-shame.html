@@ -1,0 +1,20 @@
+---
+comments: true
+date: 2011-02-12 18:23:57
+layout: post
+slug: the-python-3-wall-of-shame
+title: The Python 3 Wall of Shame
+wordpress_id: 119
+categories:
+- philosophy
+- programming
+tags:
+- py3k
+- python
+---
+
+Here's my attempt at <a href="http://python3wos.appspot.com">motivating package maintainers to port to python 3</a> and you can check out<a href="http://code.google.com/p/python3wos/"> the code that generates the chart</a>. I basically scraped PyPI (13,000 webpages) for this info and formatted it into an HTML table which is uploaded to appspot. I added a 'cron' task on my PC to recrawl PyPI every Sunday so the chart stays fresh. When developing the WOS I used <a href="http://code.google.com/p/filecache/">filecache </a>(from the previous blog post) so I could just write the code that parses the crawl as though it just now scraped PyPI while infact everything was cached to disk. Without filecache I would have had to either wait for ages, or write code that stores the scrapes, and reparses them. About 10 lines turn into an import and a decorator, now that's magic.
+
+I hope no one takes offense from this. The situation we're starting at is pretty bad. Only 11 out of the top 100 packages on PyPI are labeled as supporting python3. There are a few glitches (e.g. multiprocessing) where the developers simply haven't yet labeled the package as python 3 compliant.
+
+Once we pass the 50% mark I guess we can change it from "Wall of Shame" to "World of Strength" or something because the subdomain is "wos".

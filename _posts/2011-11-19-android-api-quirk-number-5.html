@@ -1,0 +1,26 @@
+---
+comments: true
+date: 2011-11-19 02:52:04
+layout: post
+slug: android-api-quirk-number-5
+title: Android api quirk number 5
+wordpress_id: 181
+categories:
+- programming
+tags:
+- android
+- api
+- drawRect
+---
+
+Wow this is silly.
+
+public void drawRect(float left, float top, float right, float bottom, Paint paint)
+
+Usually it doesn't matter if top is higher than bottom. Either way a rectangle is drawn.
+
+UNLESS, top is outside of the screen. Then no rectangle is drawn at all.
+
+So you can have rectangles that are partially visible, but only if their top is greater than their bottom.
+
+ZOMG that was a hard bug to figure out....

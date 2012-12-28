@@ -1,0 +1,34 @@
+---
+comments: true
+date: 2012-10-16 21:30:46
+layout: post
+slug: dominant-misconceptions-of-recessive-genes
+title: Dominant misconceptions of recessive genes
+wordpress_id: 631
+categories:
+- programming
+tags:
+- dominant
+- genes
+- genetics
+- javascript
+- paperjs
+- python
+- recessive
+- simulation
+- traits
+---
+
+I still remember my 10th grade Biology teacher explaining that because blonde hair is a recessive trait it will slowly vanish off the face of the earth. Recently I read a news article with a similar claim, and had an argument with a few other biology and genetic majors. So I wrote a simulation.
+
+<a title="TraitSim" href="http://yuvalg.com/traitsim/">TraitSim</a> is an animated toy for exploring random, neutral gene proliferation with brown and blue eyes as an example. I also wrote a <a title="python simulation of genetic drift" href="https://github.com/ubershmekel/traitsim/blob/master/simulate.py">python version of the simulation</a> and ran it tens of thousands of times. Thanks <a title="PyPy" href="http://pypy.org/">pypy for the <strong>8.3x</strong> speedup</a>! Surprisingly the chance to win the gene-race is linear with the gene's initial prevalence as can be seen in the following graph thanks to <a title="Matplotlib" href="http://matplotlib.org/">matplotlib</a>.
+
+<img class="alignnone" title="chance of going extinct" alt="" src="http://i.imgur.com/jb4QN.png" height="615" width="815" />
+
+The thing with dominance is that it affects the gene expression which can be seen in the following graph:
+
+<img class="alignnone" title="prevalence of trait vs gene" alt="" src="http://i.imgur.com/Z4LM4.png" height="615" width="815" />
+
+&nbsp;
+
+And here's <a title="graph generating source matplotlib" href="https://github.com/ubershmekel/traitsim/blob/master/graphs.py">the source that generated these from the data</a>. There's more information in the <a title="TraitSim Page" href="http://ubershmekel.github.com/traitsim/">project page on github</a>. These github pages are strange creatures which I'm not sure how to work with yet. Can I modify the CSS or structure somehow without losing the benefit of the page generator?

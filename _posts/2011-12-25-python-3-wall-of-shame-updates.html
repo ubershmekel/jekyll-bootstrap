@@ -1,0 +1,27 @@
+---
+comments: true
+date: 2011-12-25 20:08:25
+layout: post
+slug: python-3-wall-of-shame-updates
+title: Python 3 Wall of Shame Updates
+wordpress_id: 528
+categories:
+- programming
+tags:
+- py3k
+- python
+- python3wos
+- wall of shame
+- wos
+---
+
+Earlier in December I was approached by Chris McDonough with a reddit pm asking if I could or would implement some kind of behavior regarding a  "Python 2 only" classifier on <a title="Python 3 WOS" href="http://python3wos.appspot.com">the wall of shame</a>. After some aggressive googling I found the <a href="http://mail.python.org/pipermail/catalog-sig/2011-December/004077.html">original discussion in catalog-sig</a>. The idea was to add a classifier that signified "the authors have no current intention to port this code to Python 3". By declaring such an intent, Chris explained, a python package should be erased from the wall of shame. Not that I completely understood this intuition but still I tried to somehow apply myself to the effort of improving the WOS. So here's what's new:
+<ul>
+	<li>Packages with the "Programming Language :: Python :: 2 :: Only" trove classifier will have a lock next to their package with a mouse over explaining their intent.</li>
+	<li>Packages that have an equivalent py3k package are now not erased from the wall but rather show a link to the equivalent package. This rightfully boosts the compatibles count by 4. Note that packages that would doubly boost the count are still erased (eg Jinja is erased because Jinja2 is in the top 200).</li>
+	<li>Packages that are python 3 compatible but lack the trove classifier won't stay red if brought to my attention. I've always stated the WOS can only be as good as pypi, not better. Hoping that in time PyPI would become more accurate, this move saddens me a bit. To keep a bit of the spirit the artificially green packages have a red triangle signifying the maintainer's lack of trove classifiers (again with a relevant mouse over).</li>
+	<li>The WOS is now written for python 2.7 and migrated to the HRD, woohoo!</li>
+</ul>
+Please  do contact me if there are any more inaccuracies or mistakes. I'm reachable at ubershmekel at gmail and by comments on this blog.
+
+Ps, we're at 57/200, so maybe by this time next year we can have that Python 3 Wall of Superpowers party! Amen to that...

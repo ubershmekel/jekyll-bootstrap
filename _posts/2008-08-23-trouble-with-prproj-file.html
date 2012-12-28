@@ -1,0 +1,20 @@
+---
+comments: true
+date: 2008-08-23 11:29:52
+layout: post
+slug: trouble-with-prproj-file
+title: Trouble with prproj file
+wordpress_id: 27
+categories:
+- reversing
+tags:
+- premiere
+- prproj
+- reversing
+---
+
+While trying to make the srt to premiere script:
+
+prpoj is xml, prtl (premiere title) is also xml. I think inside prproj, the prtl is not in xml form, but rather compressed somehow. I think this because I couldn't find the text from the title inside the prproj file. Anyways there's this base64 file in the prproj xml which I think contains the title because after i decode it there is a string at the beginning of the binary "CompressedTitle", but I don't know how to decompress it...
+
+here is the file after decoding the base64: <a title="Compressed Title" href="http://www.fileqube.com/hl/Chreg86715/titleA.un">[decoded file that needs to be decompressed]</a>

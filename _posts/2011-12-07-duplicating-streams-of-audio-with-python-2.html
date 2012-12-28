@@ -1,0 +1,11 @@
+---
+comments: true
+date: 2011-12-07 11:08:47
+layout: post
+published: false
+slug: duplicating-streams-of-audio-with-python-2
+title: Duplicating Streams of Audio with Python
+wordpress_id: 185
+---
+
+<p>This morning I made a <a title="Duplicate or replicate audio streams using pyaudio" href="http://codepad.org/vgEZbU3y">python script that uses pyaudio to read from one audio device and pipe to the next, I call it replicate.py</a>.</p><p>This is a really old problem for me, ever since I first had 4.1 speakers and winamp only played on the front 2. Nowadays I just want VLC to play on both the TV and the computer speakers without switching between audio output modules in the preferences or fiddling with the default audio output in Windows 7.</p><p><a title="PyAudio" href="http://people.csail.mit.edu/hubert/pyaudio/">PyAudio</a> was really nice and easy to use, I just wish asynch io was added so I could lower the latency a bit as I'm getting 240 ms right now which is very far from perfect.</p>

@@ -1,0 +1,77 @@
+---
+comments: true
+date: 2012-02-13 22:28:39
+layout: post
+slug: python-isnt-english-and-iterator-labels
+title: Python isn't English and iterator "labels"
+wordpress_id: 575
+categories:
+- programming
+tags:
+- continue
+- english
+- generators
+- iterators
+- python
+- yield
+---
+
+Us python fanboys like to think of python as similar to English and thus more readable. Let's examine a simple piece of code:
+<pre>for item in big_list:
+    if item.cost &gt; 5:
+        continue
+    item.purchase()</pre>
+For our discussion there are only 3 kinds of people:
+<ol>
+	<li>People who have never seen a line of code in their life.</li>
+	<li>Have programmed in other languages but have never seen python.</li>
+	<li>Python programmers.</li>
+</ol>
+<div>We'll dabble between the first 2 groups and how they parse the above. Let's try to forget what we know about python or programming and read that in English:</div>
+<ul>
+	<li>"for item in big_list" - either we're talking about doing something for a specific item in a big_list or we're talking about every single item. Ambiguous but the first option doesn't really make sense so that's fine.</li>
+	<li>"if item.cost &gt; 5" - non-programmers are going to talk about the period being in a strange place, but programmers will know exactly what's up.</li>
+	<li>
+<div>"continue" - That's fine, keep going. English speakers are going to get the completely wrong idea. As programmers we've grown used to this convention though its meaning in English is very specifically equivalent to what pythonistas call "pass" or "nop" in assembly. We really should have called this "<strong>skip</strong>" or something.</div></li>
+	<li>"item.purchase()" - non-programmers are going to ask about the period and the parentheses but the rest grok that easily.</li>
+</ul>
+So I'm pretty sure this isn't English. But it's fairly readable for a programmer. I believe programmers of any of the <a title="tiobe index" href="http://www.tiobe.com/content/paperinfo/tpci/index.html">top 8 languages on the TIOBE index</a> can understand simple python. I definitely can't say the same for Lisp and Haskell. Not that there's anything wrong with Lisp/Haskell, these languages have specialized syntax for their honorable reasons.
+<h2>Continue is a silly word, what about iterator labels?</h2>
+Let's say I want to break out of an outer loop from a nested loop, eg:
+<pre>for item in big_list:
+    for review in item.reviews:
+        if review &lt; 3.0:
+            # next item or next review?
+            continue
+        if review &gt; 9.0:
+            # stop reading reviews or stop looking for items?
+            break</pre>
+Java supports <strong>specific breaks and continues</strong> by adding labels to the for loops but I think we can do better. How about this:
+<pre>items_gen = (i for i in big_list)
+for item in items_gen:
+    for review in item.reviews:
+        if review &lt; 3.0:
+            items_gen.continue()
+        if review &gt; 9.0:
+            items_gen.break()</pre>
+But how can that even be possible you may ask? Well, nowadays it isn't but maybe one day if <a title="python ideas" href="http://mail.python.org/mailman/listinfo/python-ideas">python-ideas</a> like this idea we can have nice things. Here's how I thought it could work: a for-loop on a generator can theoretically look like this:
+<pre>while True:
+    try:
+        item = next(gen)
+        # do stuff with item
+    except StopIteration:
+        break</pre>
+But if it worked like I propose below we can support the specific breaks and continues:
+<pre>while True:
+    try:
+        item = next(gen)
+        # do stuff with item
+    except gen.ContinueIteration:
+        pass
+    except gen.StopIteration:
+        break
+    except StopIteration:
+        break</pre>
+So every generator could have a method which throws its relevant exception and we could write specific breaks and continues. Or if you prefer a different spelling could be "break from mygen" or "continue from mygen" as continue and break aren't allowed as method names normally.
+
+I think this could be nice. Although many times I found myself using nested loops I actually preferred to break the monster into 2 functions with one loop each. That way I could use the return value to do whatever I need in the outer loop (break/continue/etc). So perhaps it's a good thing the language doesn't help me build monstrosity's and forces me to flatten my code. I wonder.
