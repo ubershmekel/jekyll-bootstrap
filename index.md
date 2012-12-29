@@ -4,7 +4,10 @@ title: yuvalg/blog
 tagline: Arts and bits
 ---
     
-This blog contains the old posts from uberpython and more in the future.
+{% include JB/setup %}
+
+This blog contains the old posts from uberpython 
+and more in the future.
 
 <ul class="posts">
   {% for post in site.posts %}

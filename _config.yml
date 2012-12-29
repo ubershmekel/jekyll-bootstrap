@@ -1,3 +1,5 @@
+safe: true
+
 # This is the default format. 
 # For more see: https://github.com/mojombo/jekyll/wiki/Permalinks
 permalink: /:categories/:year/:month/:day/:title 
@@ -16,7 +18,7 @@ author :
   email : ubershmekel@gmail.com
   github : ubershmekel
   twitter : ubershmekel
-  feedburner : feedname
+  feedburner : yuvalg/blog
 
 # The production_url is only used when full-domain names are needed
 # such as sitemap.txt 
@@ -26,7 +28,7 @@ author :
 # Else if you are pushing to username.github.com, replace with your username.
 # Finally if you are pushing to a GitHub project page, include the project name at the end.
 #
-production_url : http://username.github.com
+production_url : http://yuvalg.com/blog
 
 # All Jekyll-Bootstrap specific configurations are namespaced into this hash
 #
@@ -55,7 +57,7 @@ JB :
   #   - Only the following values are falsy: ["", null, false]
   #   - When setting BASE_PATH it must be a valid url.
   #     This means always setting the protocol (http|https) or prefixing with "/"
-  BASE_PATH : false
+  BASE_PATH : http://yuvalg.com/blog
 
   # By default, the asset_path is automatically defined relative to BASE_PATH plus the enabled theme.
   # ex: [BASE_PATH]/assets/themes/[THEME-NAME]
@@ -99,7 +101,7 @@ JB :
   analytics :
     provider : google 
     google : 
-        tracking_id : 'UA-123-12'
+        tracking_id : 'UA-4533496-16'
     getclicky :
       site_id : 
     mixpanel :
@@ -124,5 +126,4 @@ JB :
   #   ./_includes/custom/[HELPER]
   # where [HELPER] is the name of the helper you are overriding.
   
-server: false
 auto: false
