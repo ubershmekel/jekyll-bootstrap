@@ -6,8 +6,7 @@ tagline: Arts and bits
     
 {% include JB/setup %}
 
-This blog contains the old posts from uberpython 
-and more in the future.
+The blog previously known as "uberpython python blog"
 
 <ul class="posts">
   {% for post in site.posts %}
