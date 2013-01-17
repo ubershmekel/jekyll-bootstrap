@@ -243,6 +243,7 @@ ul.posts span {
 .post {
     border-bottom: 1px dotted black;
     padding-bottom: 1em;
+    text-align: left;
 }
 
   /* standard */
@@ -324,6 +325,10 @@ ul.tag_box {
     color: #005F6B;
     border-radius: 3px;
     text-decoration: none;
+}
+
+.tag_box a:hover {
+    background-color: #FEE;
 }
 
 .tag_box a span {
