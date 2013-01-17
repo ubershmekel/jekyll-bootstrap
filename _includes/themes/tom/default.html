@@ -21,12 +21,17 @@
 
   <div class="site">
     <div class="title">
-      <a href="{{ HOME_PATH }}">{{ site.title }}</a>
-
+      <ul class="nav">
+        <li>
+            <a id="brand" href="{{ HOME_PATH }}">{{ site.title }}</a>
+        </li>
+        {% assign pages_list = site.pages_list %}
+        {% include JB/pages_list %}
+      </ul>
       <!--a class="extra" href="{{ BASE_PATH }}{{ site.JB.archive_path }}">Archive</a>
-      <a class="extra" href="{{ BASE_PATH }}{{ site.JB.pages_path }}">Pages</a-->
+      <a class="extra" href="{{ BASE_PATH }}{{ site.JB.pages_path }}">Pages</a>
       <a class="extra" href="{{ BASE_PATH }}{{ site.JB.categories_path }}">categories</a>
-      <a class="extra" href="{{ BASE_PATH }}{{ site.JB.tags_path }}">tags</a>
+      <a class="extra" href="{{ BASE_PATH }}{{ site.JB.tags_path }}">tags</a-->
     </div>
   
     {{ content }}
