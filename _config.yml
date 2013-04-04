@@ -132,3 +132,8 @@ pages_list:
   - title: tags
     url: "/tags.html"
 
+
+
+tag_feed_layout: tag_feed
+tag_feed_dir: tag
+
