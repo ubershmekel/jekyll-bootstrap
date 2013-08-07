@@ -15,7 +15,7 @@ Dec 2012 I got into <a href="http://www.lua.org/">lua</a> for some multiplatform
 
 Lua did quite a few great things:
 <ul>
-	<li>Amazingly <strong>small</strong> and minimalistic in an almost criminal fashion. This is part of what makes it so <strong>embeddable</strong>. Some of the "trivial" missing things:
+	<li>Amazingly <strong>small</strong> and minimalistic in an almost criminal fashion. This is part of what makes it so <strong>embeddable</strong>. Some of the "trivial" missing things:
 <ul>
 	<li>No default recursive "tostring" for tables (kinda like dicts in python)</li>
 	<li>No default recursive comparison of tables ({"a":3} != {"a":3})</li>
@@ -28,7 +28,7 @@ Lua did quite a few great things:
 </ul>
 But aside the great things this language has, there are quite a few nefarious warts.
 <ul>
-	<li>Undefined variables are defaulted as <em>nil</em>. In Lua you might execute a typo and not even notice because <em>nil</em> was a possible value for that variable. This can cause really sneaky bugs. E.g. it took me an hour to figure out that <a title="Renaming of screen resolution variable" href="https://github.com/moai/moai-dev/commit/23d7ac66678cc1db26db0ff8e88e36027ec50007">MOAI renamed a certain value</a> in its api, this bug would have been silly easy to debug if a MissingKeyError exploded.</li>
+	<li>Undefined variables are defaulted as <em>nil</em>. In Lua you might execute a typo and not even notice because <em>nil</em> was a possible value for that variable. This can cause really sneaky bugs. E.g. it took me an hour to figure out that <a title="Renaming of screen resolution variable" href="https://github.com/moai/moai-dev/commit/23d7ac66678cc1db26db0ff8e88e36027ec50007">MOAI renamed a certain value</a> in its api, this bug would have been silly easy to debug if a MissingKeyError exploded.</li>
 	<li>When you forget an "end" in a big lua file, may god have mercy on your soul. You're going to have to work very hard to find it because the compiler figures it out only at the end of the file. I do like braces btw so I think compilers should warn/error when the indentation seems silly.</li>
 	<li>Two parameters to a function with the same name is allowed.
 <pre>
