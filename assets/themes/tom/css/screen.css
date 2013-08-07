@@ -274,6 +274,8 @@ ul.posts span {
 .post img {
     max-width: 97%;
     height: auto;
+    display: block;
+    margin: 1em;
 }
 
   /* terminal */
