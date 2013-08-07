@@ -1,0 +1,47 @@
+---
+comments: true
+date: 2013-08-07 18:30:46
+layout: post
+slug: learning-some-lua
+title: Learning Some Lua
+categories:
+- programming
+tags:
+- lua
+- game
+---
+
+Dec 2012 I got into <a href="http://www.lua.org/">lua</a> for some multiplatform (android/iOS) programming with <a href="http://getmoai.com/">MOAI</a>. I was making a flood-it like game called <a href="https://github.com/ubershmekel/omgcheese">Gopher's Birthday</a>. Though I abandoned the project for the time being, this was my experience with Lua.
+
+Lua did quite a few great things:
+<ul>
+	<li>Amazingly <strong>small</strong> and minimalistic in an almost criminal fashion. This is part of what makes it so <strong>embeddable</strong>. Some of the "trivial" missing things:
+<ul>
+	<li>No default recursive "tostring" for tables (kinda like dicts in python)</li>
+	<li>No default recursive comparison of tables ({"a":3} != {"a":3})</li>
+	<li>No default inheritance mechanism, roll out your own!</li>
+	<li>No sets, no heaps, nothing, just tables.</li>
+</ul>
+</li>
+	<li><b>Very fast</b>, LuaJIT was pretty dominant on The Computer Language Benchmarks Game before the game removed alternative implementations.</li>
+	<li>Metatables are a very smart solution for an oh-so complex problem. You can have all the fun of a fully dynamic language and keep the bare bones clean and simple for JIT optimizers.</li>
+</ul>
+But aside the great things this language has, there are quite a few nefarious warts.
+<ul>
+	<li>Undefined variables are defaulted as <em>nil</em>. In Lua you might execute a typo and not even notice because <em>nil</em> was a possible value for that variable. This can cause really sneaky bugs. E.g. it took me an hour to figure out that <a title="Renaming of screen resolution variable" href="https://github.com/moai/moai-dev/commit/23d7ac66678cc1db26db0ff8e88e36027ec50007">MOAI renamed a certain value</a> in its api, this bug would have been silly easy to debug if a MissingKeyError exploded.</li>
+	<li>When you forget an "end" in a big lua file, may god have mercy on your soul. You're going to have to work very hard to find it because the compiler figures it out only at the end of the file. I do like braces btw so I think compilers should warn/error when the indentation seems silly.</li>
+	<li>Two parameters to a function with the same name is allowed.
+<pre>
+&gt; function f(x, x)
+&gt;&gt; print(x)
+&gt;&gt; end
+&gt; f(1, 2)
+2
+</pre>
+	</li>
+	<li>Tuples, they sort of have them but don't. You can have multiple return values, though you can't assign them to a single object. At times their semantics are mind boggling, e.g. paint(color, getXY()) works but paint(getXY(), color) doesn't because multiple return value unpacking only happens for the last parameter. Go figure.</li>
+</ul>
+
+I wrote this rant 8 months ago so I hope I haven't presented anything wrong or outdated.
+
+In general, lua won't stop you from coding like an idiot. Errors pass silently in many unexpected places. But it is a small, wonderful, and useful little language.
