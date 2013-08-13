@@ -91,6 +91,7 @@ label {
   <label><input name="shape" type="radio" id="square">Square</label>
   <label><input name="shape" type="radio" id="diamond">Diamond</label>
   <label><input name="shape" type="radio" id="polarAsin">PolarZigZag</label>
+  <label><input name="shape" type="radio" id="yourFunction"><textarea id="textFunction" rows="2" cols="20">return t/5;</textarea></label>
   
   <br />
   <hr />
@@ -416,6 +417,11 @@ d3.selectAll("#diamond").on("change", function() {
 
 d3.selectAll("#polarAsin").on("change", function() { 
   newPolarFunc(polarAsin);
+});
+
+d3.selectAll("#yourFunction").on("change", function() { 
+    text = document.getElementById("textFunction").value
+    newPolarFunc(Function("t", text));
 });
 
 
